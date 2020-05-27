@@ -13,22 +13,18 @@ __Как поставить этот форк в проект?__
 В файл `composer.json` добавьте в блок `require` оригинальную либу:
 
 ```json
-...
 "require": {
     "phpoffice/phppresentation": "dev-master"
-  },
-...
+  },=
 ```
 
 а в блок `repositories` ссылку на этот форк:
 
 ```json
-...
 "repositories": [
     {
         "type": "vcs",
-        "url": "https://gitlab.efko.ru/composer/phppresentation"
+        "url": "https://gitlab.efko.ru/a.yu.kirilenko/phppresentation"
     }
 ],
-...
 ```
