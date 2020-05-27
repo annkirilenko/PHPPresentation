@@ -99,7 +99,7 @@ class PptCharts extends AbstractDecoratorWriter
 
         // c:hPercent
         $hPercent = $chart->getView3D()->getHeightPercent();
-        $objWriter->writeElementIf($hPercent != null, 'c:hPercent', 'val', $hPercent . '%');
+        $objWriter->writeElementIf($hPercent != null, 'c:hPercent', 'val', $hPercent . '');
 
         // c:rotY
         $objWriter->startElement('c:rotY');
@@ -2166,7 +2166,7 @@ class PptCharts extends AbstractDecoratorWriter
 
             // c:lblOffset
             $objWriter->startElement('c:lblOffset');
-            $objWriter->writeAttribute('val', '100%');
+            $objWriter->writeAttribute('val', '100');
             $objWriter->endElement();
         }
 
