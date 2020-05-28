@@ -7,6 +7,7 @@ use PhpOffice\Common\XMLWriter;
 use PhpOffice\PhpPresentation\Style\Border;
 use PhpOffice\PhpPresentation\Style\Color;
 use PhpOffice\PhpPresentation\Style\Fill;
+use PhpOffice\PhpPresentation\Style\FillChart;
 use PhpOffice\PhpPresentation\Style\Outline;
 
 abstract class AbstractDecoratorWriter extends \PhpOffice\PhpPresentation\Writer\AbstractDecoratorWriter
@@ -128,10 +129,12 @@ abstract class AbstractDecoratorWriter extends \PhpOffice\PhpPresentation\Writer
         $objWriter->startElement('a:srgbClr');
         $objWriter->writeAttribute('val', $color->getRGB());
 
-        // a:alpha
-        $objWriter->startElement('a:alpha');
-        $objWriter->writeAttribute('val', $alpha . '%');
-        $objWriter->endElement();
+        if($alpha > 0) {
+            // a:alpha
+            $objWriter->startElement('a:alpha');
+            $objWriter->writeAttribute('val', $alpha . '%');
+            $objWriter->endElement();
+        }
 
         $objWriter->endElement();
     }
@@ -227,25 +230,27 @@ abstract class AbstractDecoratorWriter extends \PhpOffice\PhpPresentation\Writer
      * Write Pattern Fill
      *
      * @param  \PhpOffice\Common\XMLWriter $objWriter XML Writer
-     * @param  \PhpOffice\PhpPresentation\Style\Fill       $pFill     Fill style
+     * @param  \PhpOffice\PhpPresentation\Style\FillChart       $pFill     Fill style
      * @throws \Exception
      */
-    protected function writePatternFill(XMLWriter $objWriter, Fill $pFill)
+    protected function writePatternFill(XMLWriter $objWriter, FillChart $pFill)
     {
         // a:pattFill
         $objWriter->startElement('a:pattFill');
+        
+        $objWriter->writeAttribute('prst', $pFill->getFillType());
 
         // fgClr
         $objWriter->startElement('a:fgClr');
 
-        $this->writeColor($objWriter, $pFill->getStartColor());
+        $this->writeColor($objWriter, $pFill->getStartColor(), -1);
 
         $objWriter->endElement();
 
         // bgClr
         $objWriter->startElement('a:bgClr');
 
-        $this->writeColor($objWriter, $pFill->getEndColor());
+        $this->writeColor($objWriter, $pFill->getEndColor(), -1);
 
         $objWriter->endElement();
 
