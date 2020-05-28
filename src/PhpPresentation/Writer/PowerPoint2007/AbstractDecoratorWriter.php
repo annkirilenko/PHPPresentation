@@ -7,7 +7,6 @@ use PhpOffice\Common\XMLWriter;
 use PhpOffice\PhpPresentation\Style\Border;
 use PhpOffice\PhpPresentation\Style\Color;
 use PhpOffice\PhpPresentation\Style\Fill;
-use PhpOffice\PhpPresentation\Style\FillChart;
 use PhpOffice\PhpPresentation\Style\Outline;
 
 abstract class AbstractDecoratorWriter extends \PhpOffice\PhpPresentation\Writer\AbstractDecoratorWriter
@@ -230,10 +229,10 @@ abstract class AbstractDecoratorWriter extends \PhpOffice\PhpPresentation\Writer
      * Write Pattern Fill
      *
      * @param  \PhpOffice\Common\XMLWriter $objWriter XML Writer
-     * @param  \PhpOffice\PhpPresentation\Style\FillChart       $pFill     Fill style
+     * @param  \PhpOffice\PhpPresentation\Style\Fill       $pFill     Fill style
      * @throws \Exception
      */
-    protected function writePatternFill(XMLWriter $objWriter, FillChart $pFill)
+    protected function writePatternFill(XMLWriter $objWriter, Fill $pFill)
     {
         // a:pattFill
         $objWriter->startElement('a:pattFill');
