@@ -51,6 +51,12 @@ class Series implements ComparableInterface
     protected $DlblNumFormat = '';
 
     /**
+     * Data Label Percent Format
+     * @var boolean
+     */
+    protected $percentFormat = false;
+
+    /**
      * Separator
      * @var string
      */
@@ -208,6 +214,26 @@ class Series implements ComparableInterface
     {
         $this->DlblNumFormat = $value;
         return $this;
+    }
+
+    /**
+     * Get Is Data Label Percent Format
+     *
+     * @return string
+     */
+    public function getPercentFormat()
+    {
+        return $this->percentFormat;
+    }
+
+    /**
+     * Get Is Data Label Percent Format
+     *
+     * @return string
+     */
+    public function setPercentFormat($value = false)
+    {
+        $this->percentFormat = $value;
     }
 
     /**

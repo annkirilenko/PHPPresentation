@@ -317,7 +317,7 @@ class PptCharts extends AbstractDecoratorWriter
      * @param mixed $values
      * @param string $reference
      */
-    protected function writeMultipleValuesOrReference($objWriter, $isReference, $values, $reference)
+    protected function writeMultipleValuesOrReference($objWriter, $isReference, $values, $reference, $isPercentFormat = false)
     {
         // c:strLit / c:numLit
         // c:strRef / c:numRef
@@ -327,6 +327,10 @@ class PptCharts extends AbstractDecoratorWriter
             $dataType = 'num';
         }
         $objWriter->startElement('c:' . $dataType . $referenceType);
+
+        if($isPercentFormat) {
+            $objWriter->writeElement('c:formatCode', '0%');
+        }
 
         $numValues = count($values);
         if (!$isReference) {
@@ -950,10 +954,12 @@ class PptCharts extends AbstractDecoratorWriter
             // Write Y axis data
             $axisYData = array_values($series->getValues());
 
+            $isPercentFormat = $series->getPercentFormat();
+
             // c:val
             $objWriter->startElement('c:val');
             $coords = ($includeSheet ? 'Sheet1!$' . \PHPExcel_Cell::stringFromColumnIndex($seriesIndex + 1) . '$2:$' . \PHPExcel_Cell::stringFromColumnIndex($seriesIndex + 1) . '$' . (1 + count($axisYData)) : '');
-            $this->writeMultipleValuesOrReference($objWriter, $includeSheet, $axisYData, $coords);
+            $this->writeMultipleValuesOrReference($objWriter, $includeSheet, $axisYData, $coords, $isPercentFormat);
             $objWriter->endElement();
 
             $objWriter->endElement();
