@@ -284,6 +284,17 @@ class Series implements ComparableInterface
     }
 
     /**
+     * Set DataPointFills
+     *
+     * @param \PhpOffice\PhpPresentation\Style\Fill[] $values
+     * @return void
+     */
+    public function setDataPointFills($values)
+    {
+        $this->dataPointFills = $values;
+    }
+
+    /**
      * Get Values
      *
      * @return array
