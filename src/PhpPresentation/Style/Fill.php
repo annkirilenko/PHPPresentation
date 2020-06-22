@@ -18,6 +18,7 @@
 namespace PhpOffice\PhpPresentation\Style;
 
 use PhpOffice\PhpPresentation\ComparableInterface;
+use PhpOffice\PhpPresentation\Shape\Chart\Marker;
 
 /**
  * \PhpOffice\PhpPresentation\Style\Fill
@@ -74,6 +75,13 @@ class Fill implements ComparableInterface
      * @var \PhpOffice\PhpPresentation\Style\Color
      */
     private $endColor;
+
+    /**
+     * Marker
+     *
+     * @var \PhpOffice\PhpPresentation\Shape\Chart\Marker
+     */
+    protected $marker;
 
     /**
      * Hash index
@@ -188,6 +196,29 @@ class Fill implements ComparableInterface
     public function setEndColor(Color $pValue = null)
     {
         $this->endColor = $pValue;
+
+        return $this;
+    }
+
+    /**
+     * Get Marker
+     *
+     * @return \PhpOffice\PhpPresentation\Shape\Chart\Marker
+     */
+    public function getMarker()
+    {
+        $this->marker;
+    }
+
+    /**
+     * Set Marker
+     *
+     * @param \PhpOffice\PhpPresentation\Shape\Chart\Marker $value
+     * @return \PhpOffice\PhpPresentation\Style\Fill
+     */
+    public function setMarker(Marker $value)
+    {
+        $this->marker = $value;
 
         return $this;
     }

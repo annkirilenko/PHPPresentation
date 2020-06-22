@@ -127,6 +127,12 @@ class Series implements ComparableInterface
     private $showValue = true;
 
     /**
+     * ShowBubbleSize
+     * @var boolean
+     */
+    private $showBubbleSize = false;
+
+    /**
      * Title
      * @var string
      */
@@ -378,7 +384,7 @@ class Series implements ComparableInterface
     }
 
     /**
-     * Get ShowValue
+     * Get ShowLegendKey
      *
      * @return boolean
      */
@@ -388,7 +394,7 @@ class Series implements ComparableInterface
     }
 
     /**
-     * Set ShowValue
+     * Set ShowLegendKey
      *
      * @param  boolean                          $value
      * @return \PhpOffice\PhpPresentation\Shape\Chart\Series
@@ -419,6 +425,29 @@ class Series implements ComparableInterface
     public function setShowValue($value)
     {
         $this->showValue = $value;
+
+        return $this;
+    }
+
+    /**
+     * Get ShowBubbleSize
+     *
+     * @return boolean
+     */
+    public function hasShowBubbleSize()
+    {
+        return $this->showBubbleSize;
+    }
+
+    /**
+     * Set ShowBubbleSize
+     *
+     * @param  boolean $value
+     * @return \PhpOffice\PhpPresentation\Shape\Chart\Series
+     */
+    public function setShowBubbleSize($value)
+    {
+        $this->showBubbleSize = $value;
 
         return $this;
     }

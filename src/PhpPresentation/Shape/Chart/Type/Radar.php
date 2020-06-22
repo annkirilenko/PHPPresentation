@@ -26,14 +26,14 @@ class Radar extends AbstractType implements ComparableInterface
     const STYLE_MARKER = 'marker';
 
     /**
-     * Diagram style
+     * Radar style
      *
      * @var string
      */
     protected $style = self::STYLE_STANDART;
 
     /**
-     * Get style
+     * Get radar style
      *
      * @return string
      */
@@ -43,7 +43,7 @@ class Radar extends AbstractType implements ComparableInterface
     }
 
     /**
-     * Set bar orientation
+     * Set radar style
      *
      * @param string $value
      * @return \PhpOffice\PhpPresentation\Shape\Chart\Type\Radar
@@ -61,6 +61,10 @@ class Radar extends AbstractType implements ComparableInterface
      */
     public function getHashCode()
     {
-        return md5(parent::getHashCode() . __CLASS__);
+        $hash = '';
+        foreach ($this->getSeries() as $series) {
+            $hash .= $series->getHashCode();
+        }
+        return md5($hash . __CLASS__);
     }
 }
