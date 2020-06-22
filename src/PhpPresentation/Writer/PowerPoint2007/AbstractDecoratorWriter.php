@@ -128,7 +128,7 @@ abstract class AbstractDecoratorWriter extends \PhpOffice\PhpPresentation\Writer
         $objWriter->startElement('a:srgbClr');
         $objWriter->writeAttribute('val', $color->getRGB());
 
-        if($alpha > 0) {
+        if($alpha < 100) {
             // a:alpha
             $objWriter->startElement('a:alpha');
             $objWriter->writeAttribute('val', $alpha . '%');
@@ -242,14 +242,14 @@ abstract class AbstractDecoratorWriter extends \PhpOffice\PhpPresentation\Writer
         // fgClr
         $objWriter->startElement('a:fgClr');
 
-        $this->writeColor($objWriter, $pFill->getStartColor(), -1);
+        $this->writeColor($objWriter, $pFill->getStartColor());
 
         $objWriter->endElement();
 
         // bgClr
         $objWriter->startElement('a:bgClr');
 
-        $this->writeColor($objWriter, $pFill->getEndColor(), -1);
+        $this->writeColor($objWriter, $pFill->getEndColor());
 
         $objWriter->endElement();
 
