@@ -57,7 +57,7 @@ class Chart extends AbstractGraphic implements ComparableInterface
     private $view3D;
 
     /**
-     * Include spreadsheet for editing data? Requires PHPExcel in the same folder as PhpPresentation
+     * Include spreadsheet for editing data?
      *
      * @var bool
      */
@@ -129,7 +129,7 @@ class Chart extends AbstractGraphic implements ComparableInterface
     }
 
     /**
-     * Include spreadsheet for editing data? Requires PHPExcel in the same folder as PhpPresentation
+     * Include spreadsheet for editing data?
      *
      * @return boolean
      */
@@ -139,7 +139,7 @@ class Chart extends AbstractGraphic implements ComparableInterface
     }
 
     /**
-     * Include spreadsheet for editing data? Requires PHPExcel in the same folder as PhpPresentation
+     * Include spreadsheet for editing data?
      *
      * @param  boolean                   $value
      * @return \PhpOffice\PhpPresentation\Shape\Chart
