@@ -22,6 +22,8 @@ $series->setDataPointFills([
 ]);
 ```
 
+* Произведен переход с `PHPExcel` на `PhpSpreadsheet`.
+
 __Как поставить этот форк в проект?__
 
 В файл `composer.json` добавьте в блок `require` оригинальную либу:
