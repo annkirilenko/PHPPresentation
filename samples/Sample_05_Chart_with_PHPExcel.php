@@ -6,13 +6,12 @@ use PhpOffice\PhpPresentation\PhpPresentation;
 use PhpOffice\PhpPresentation\Shape\Chart\Type\Bar3D;
 use PhpOffice\PhpPresentation\Shape\Chart\Type\Pie3D;
 use PhpOffice\PhpPresentation\Shape\Chart\Series;
+use PhpOffice\PhpPresentation\Shape\Chart\Type\Radar;
 use PhpOffice\PhpPresentation\Style\Fill;
 use PhpOffice\PhpPresentation\Style\Color;
 use PhpOffice\PhpPresentation\Style\Border;
 
-if (!class_exists('PHPExcel')) {
-	echo('<strong>PHPExcel has not been loaded. Include PHPExcel.php in your script, e.g. require_once \'PHPExcel.php\'.</strong>');
-} else {
+
 	// Create new PHPPresentation object
 	echo date('H:i:s') . ' Create new PHPPresentation object'.EOL;
 	$objPHPPresentation = new PhpPresentation();
@@ -113,10 +112,51 @@ if (!class_exists('PHPExcel')) {
 	$shape->getView3D()->setPerspective(30);
 	$shape->getLegend()->getBorder()->setLineStyle(Border::LINE_SINGLE);
 	$shape->getLegend()->getFont()->setItalic(true);
+
+	// Create templated slide
+	echo date('H:i:s') . ' Create templated slide'.EOL;
+	$currentSlide = createTemplatedSlide($objPHPPresentation); // local function
+	
+	// Generate sample data for second chart
+	echo date('H:i:s') . ' Generate sample data for third chart'.EOL;
+	$seriesData = array('Monday' => 0.12, 'Tuesday' => 0.15, 'Wednesday' => 0.65, 'Thursday' => 0.94, 'Friday' => 0.56);
+	
+	// Create a pie chart (that should be inserted in a shape)
+	echo date('H:i:s') . ' Create a pie chart (that should be inserted in a chart shape)'.EOL;
+	$radarChart = new Radar();
+	$series = new Series('Downloads', $seriesData);
+	$series->setPercentFormat(true);
+	$radarChart->addSeries( $series );
+	
+	// Create a shape (chart)
+	echo date('H:i:s') . ' Create a shape (chart)'.EOL;
+	$shape = $currentSlide->createChartShape();
+	$shape->setName('PHPPresentation Daily Downloads')
+			->setResizeProportional(false)
+			->setHeight(550)
+			->setWidth(700)
+			->setOffsetX(120)
+			->setOffsetY(80)
+			->setIncludeSpreadsheet(true);
+	$shape->getShadow()->setVisible(true)
+						->setDirection(45)
+						->setDistance(10);
+	$shape->getFill()->setFillType(Fill::FILL_GRADIENT_LINEAR)
+						->setStartColor(new Color('FFCCCCCC'))
+						->setEndColor(new Color('FFFFFFFF'))
+						->setRotation(270);
+	$shape->getBorder()->setLineStyle(Border::LINE_SINGLE);
+	$shape->getTitle()->setText('PHPPresentation Daily Downloads');
+	$shape->getTitle()->getFont()->setItalic(true);
+	$shape->getPlotArea()->setType($radarChart);
+	$shape->getView3D()->setRotationX(30);
+	$shape->getView3D()->setPerspective(30);
+	$shape->getLegend()->getBorder()->setLineStyle(Border::LINE_SINGLE);
+	$shape->getLegend()->getFont()->setItalic(true);
 	
 	// Save file
 	echo write($objPHPPresentation, basename(__FILE__, '.php'), $writers);
-}
+
 if (!CLI) {
 	include_once 'Sample_Footer.php';
 }
