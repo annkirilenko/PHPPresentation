@@ -30,7 +30,7 @@ class Radar extends AbstractType implements ComparableInterface
      *
      * @var string
      */
-    protected $style = self::STYLE_STANDART;
+    protected $style = Radar::STYLE_STANDART;
 
     /**
      * Get radar style
@@ -39,7 +39,7 @@ class Radar extends AbstractType implements ComparableInterface
      */
     public function getStyle()
     {
-        $this->style;
+        return $this->style;
     }
 
     /**

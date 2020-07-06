@@ -16,6 +16,10 @@
         {
             "name": "Ivan Lanin",
             "homepage": "http://ivan.lanin.org"
+        },
+        {
+            "name": "Anna Kirilenko",
+            "email": "ann.kirilenko.dev@gmail.com"
         }
     ],
     "require": {
