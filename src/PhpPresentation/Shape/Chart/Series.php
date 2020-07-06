@@ -159,6 +159,7 @@ class Series implements ComparableInterface
     public function __construct($title = 'Series Title', $values = array())
     {
         $this->fill = new Fill();
+        $this->outline = new Outline();
         $this->font = new Font();
         $this->font->setName('Calibri');
         $this->font->setSize(9);
