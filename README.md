@@ -42,7 +42,7 @@ __Как поставить этот форк в проект?__
 "repositories": [
     {
         "type": "vcs",
-        "url": "https://gitlab.com/mragazza/phppresentation.git"
+        "url": "https://github.com/annkirilenko/PHPPresentation.git"
     }
 ],
 ```
